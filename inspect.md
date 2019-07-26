@@ -3,14 +3,14 @@
 The Model Summary page, which can be seen by clicking on a model card or list entry in the Models page, provides three insights on the model:
 
 * The **score** of the model - according to the score metric that was used to train it. Read more about [classification](../theory/classification-metrics.md) and [regression](../theory/classification-metrics.md) metrics.
-* A report on the **health** of the model - which tells us whether issues where found during training that make the model sub-optimal. If this is the case, it is still possible to use the model, but it is likely that changing something in the training process may lead to better results. The {{ book.platform }} adviser will identify these issues and suggest possible solutions.
+* A report on the **health** of the model - which tells you whether issues where found during training that make the model sub-optimal. If this is the case, it is still possible to use the model, but it is likely that changing something in the training process may lead to better results. The {{ book.platform }} adviser will identify these issues and suggest possible solutions.
 * The **influences** of the model - a detailed view of which columns had an impact on the model performance.
 
 ![Insight Summary](../assets/trained-models/insight-summary.png)
 
 ## Model Health
 
-Model health tests whether your built model has extracted any statistically significant predictive performance out of the columns available to it in the training data:
+Model health tests whether your model has extracted any statistically significant predictive performance out of the columns available to it in the training data:
  * If your model health is good (green tick) you can conclude that your model has found some predictive value in your data.
  * If your model health is bad (red cross) you can conclude that the model has not found any patterns in the data to help predict your target.
 
@@ -27,7 +27,7 @@ Bad model health is an indication that your data (your columns and rows) is not 
 
 ## Model Influences
 
-Model influences tell us **how important** each feature (column) in a data set is for predicting the target column. This can be immensely useful when deciding what data should be collected and what can be left out.
+Model influences tell us **how important** each column in a data set is for predicting the target column. This can be immensely useful when deciding what data should be collected and what can be left out.
 
 Clicking on the Model Influences card takes us to a more detailed view:
 
