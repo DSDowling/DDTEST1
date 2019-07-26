@@ -1,8 +1,8 @@
 # Model Health
 
-Model health tests whether your built model has extracted any statistically significant predictive performance out of the features available to it in the training data:
- * If your model health is good (green tick) you can conclude that your model has found some predictive value from in features for predicting your target.
- * If your model health is bad (red cross) you can conclude that the model has not found any patterns in the features which are predictive of your target.
+Model health tests whether your model has extracted any statistically significant predictive performance out of the columns available to it in the training data:
+ * If your model health is good (green tick) you can conclude that your model has found some predictive value in your data.
+ * If your model health is bad (red cross) you can conclude that the model has not found any patterns in the data to help predict your target.
 
 ### How Model Health is Computed
 
@@ -17,11 +17,12 @@ Note that, in both cases, the prediction is independent of the values of the fea
 **Computing model health:** Having built a naïve model, predictions are made on the hold-out data by both the naïve model, and the model created by model building. If the error of the the naïve model is better than the model created by model building more than 1% of the time, the created model is marked as having bad model health.
 
 ### What to do if model health is bad
+Bad model health is an indication that your data (your columns and rows) is not rich enough to create a predictive model for your target column. Here are two examples of ways in which you could improve this situation:
+ * **Get more columns:** it may be that your columns do not contain any predictive information about your target. In this case, think again about what other data you have which could be predictive of your target. If you can isolate some more data, you should add and re-run model building.
+ * **Get more rows:** it may be that your columns contain predictive information about your target, but this predictive signal is difficult to uncover because the model does not have enough examples (rows) to find patterns. In this case, you should think about whether you can find more examples to train the model with. If you can find more examples, you should add them to your data and re-run model building.
 
-#### Change the feature data
-Bad model health is an indication that your feature data is not rich enough to create a predictive model for your target column. There are two, non-exclusive ways in which you can improve this situation:
-* **Get more features:** it may be that your features do not contain any predictive information about your target. In this case, you need to think again about what other data you have which could be predictive of your target. If you can isolate some more data, you should add it to your data, and re-run model building.
-* **Get more examples:** it may be that your features should contain predictive information about your target, but this predictive signal is too complex for model building to uncover simply because it does not have enough examples. In this case, you should think about whether you can find more examples to use for training the model. If you can find more examples, you should add them to your data and re-run model building.
+> **Note**  
+> It is **not advisable** to re-run the model training without changing one of these things. Equally, you should not ignore bad model health unless some specific circumstances are met. You can read more about this below. 
 
 #### Why you shouldn't just re-run without changing anything
 As the test for model health is based on a frequentist statistic, it is susceptible to p-hacking. Essentially, p-hacking means that if you repeat the process sufficiently many times, model health will eventually be flagged as good by chance. This is unlikely to happen unless you perform a lot of re-runs, but every time you do a re-run still diminishes the value of the test.
